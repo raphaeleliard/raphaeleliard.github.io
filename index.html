@@ -1,11 +1,23 @@
 <!DOCTYPE html>
+<!--
+===========================================================================
+Projet      : Portfolio Personnel & Hub d'Applications Web
+Auteur      : Raphaël Eliard
+Description : Bienvenue dans le code source de mon espace web ! 
+              J'ai conçu cette page pour qu'elle soit à la fois performante, 
+              accessible et sémographiquement propre. L'interface repose sur 
+              Tailwind CSS pour garantir un design adaptatif (responsive) 
+              cohérent, tout en facilitant la maintenance du style.
+              N'hésitez pas à explorer, le code est documenté.
+===========================================================================
+-->
 <html lang="fr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Raphaël Eliard, Ingénieur Génie Civil Nucléaire et développeur d'outils web." />
     
-    <!-- Open Graph / Réseaux Sociaux (LinkedIn, Discord, etc.) -->
+    <!-- Métadonnées SEO et balises Open Graph pour un affichage optimal lors des partages (LinkedIn, etc.) -->
+    <meta name="description" content="Portfolio de Raphaël Eliard, Ingénieur Génie Civil Nucléaire et développeur d'outils web." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.raphaeleliard.dev/" />
     <meta property="og:title" content="Raphaël Eliard - Ingénieur & Développeur" />
@@ -14,14 +26,26 @@
 
     <title>Raphaël Eliard - Projets</title>
     
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>" />
+
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<!-- 
+  Corps de la page : Application d'un thème sombre profond global (bg-zinc-950) 
+  et personnalisation de la couleur de sélection de texte pour peaufiner l'UI.
+-->
 <body class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-zinc-700 selection:text-white relative z-0">
     
+    <!-- Décoration d'arrière-plan : Ajout d'une lueur subtile en haut de page pour donner une sensation de profondeur -->
     <div class="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-zinc-900 to-transparent pointer-events-none -z-10"></div>
 
+    <!-- Conteneur principal avec une largeur maximale (max-w-5xl) pour conserver une lisibilité optimale sur grand écran -->
     <main class="max-w-5xl mx-auto px-6 py-20 md:py-32">
         
+        <!-- 
+          En-tête sémantique : J'utilise 'text-balance' et 'text-pretty' pour une gestion typographique avancée 
+          (évite les mots isolés en fin de ligne). La taille du sous-titre est gérée dynamiquement par un clamp().
+        -->
         <header class="mb-20 max-w-2xl">
             <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 tracking-tight mb-4 text-balance">
                 Raphaël Eliard.
@@ -34,8 +58,17 @@
             </p>
         </header>
 
+        <!-- 
+          Grille CSS (CSS Grid) : Configuration adaptative passant de 1 colonne (mobile) 
+          à 2 colonnes (tablette), puis 3 colonnes (bureau) pour un affichage toujours fluide.
+        -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+            <!-- 
+              Carte de projet : J'exploite Flexbox (flex flex-col h-full) pour uniformiser 
+              la hauteur des tuiles. L'attribut 'flex-grow' sur le paragraphe pousse 
+              naturellement les tags vers le bas pour un alignement parfait entre les cartes.
+            -->
             <a href="https://www.raphaeleliard.dev/PMO/" class="group flex flex-col h-full p-8 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-lg font-medium text-white group-hover:text-zinc-100 transition-colors">Outil de PMO en ingénierie</h3>
@@ -81,6 +114,10 @@
                 </div>
             </a>
 
+            <!-- 
+              Carte "En cours" : L'utilisation d'une bordure en pointillés (border-dashed) 
+              permet d'indiquer intuitivement et visuellement que cet élément n'est pas encore actif.
+            -->
             <div class="p-8 rounded-2xl bg-zinc-900/30 border border-dashed border-zinc-800/80 flex flex-col h-full items-center justify-center text-center">
                 <span class="text-3xl mb-3 text-zinc-700">🚧</span>
                 <h3 class="text-lg font-medium text-zinc-500">Outil en développement</h3>
@@ -92,6 +129,11 @@
                 </div>
             </div>
 
+            <!-- 
+              Liens sociaux et Contact : L'utilisation des attributs 'aria-label' est indispensable 
+              ici pour l'accessibilité (a11y). Cela permet aux lecteurs d'écran d'interpréter 
+              correctement la destination du lien, car un émoji seul n'est pas explicite.
+            -->
             <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" aria-label="Voir mon profil LinkedIn" class="group p-8 rounded-2xl bg-transparent border border-dashed border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800/30 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full items-center justify-center text-center">
                 <span class="text-3xl mb-3 text-zinc-600 group-hover:text-[#0a66c2] transition-all duration-300 group-hover:scale-110">💼</span>
                 <h3 class="text-lg font-medium text-zinc-300 group-hover:text-white transition-colors">Parcours Professionnel</h3>
@@ -106,11 +148,13 @@
 
         </div>
 
+        <!-- Pied de page sémantique -->
         <footer class="mt-24 pt-8 border-t border-zinc-800 text-zinc-500 text-sm flex justify-center items-center">
             <p>© <span id="current-year">2024</span> Raphaël Eliard.</p>
         </footer>
 
     </main>
+    <!-- Script minimaliste pour l'actualisation automatique de l'année (évite la dette technique manuelle) -->
     <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
