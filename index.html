@@ -22,13 +22,49 @@ Description : Bienvenue dans le code source de mon espace web !
     <meta property="og:url" content="https://www.raphaeleliard.dev/" />
     <meta property="og:title" content="Raphaël Eliard - Ingénieur & Développeur" />
     <meta property="og:description" content="Découvrez mes projets informatiques développés pour répondre à des problématiques d'ingénierie." />
-    <meta property="og:image" content="https://www.raphaeleliard.dev/Visuel-Page.png/" />
+    <meta property="og:image" content="https://www.raphaeleliard.dev/Visuel-Page.png" />
 
     <title>Raphaël Eliard - Projets</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>" />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; translate: 0 30px; }
+            to { opacity: 1; translate: 0 0; }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-text {
+            background-size: 200% auto;
+            animation: gradientMove 6s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            33% { transform: translateY(-30px) translateX(20px); }
+            66% { transform: translateY(20px) translateX(-30px); }
+        }
+        .animate-float-1 { animation: float 18s ease-in-out infinite; }
+        .animate-float-2 { animation: float 22s ease-in-out infinite reverse; }
+        .animate-float-3 { animation: float 26s ease-in-out infinite; }
+    </style>
 </head>
 <!-- 
   Corps de la page : Application d'un thème sombre profond global (bg-zinc-950) 
@@ -36,24 +72,30 @@ Description : Bienvenue dans le code source de mon espace web !
 -->
 <body class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-zinc-700 selection:text-white relative z-0">
     
-    <!-- Décoration d'arrière-plan : Ajout d'une lueur subtile en haut de page pour donner une sensation de profondeur -->
-    <div class="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-zinc-900 to-transparent pointer-events-none -z-10"></div>
+    <!-- Décoration d'arrière-plan : Lueurs ambiantes "Glassmorphism" animées et adoucies -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[100px] animate-float-1"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-emerald-600/15 blur-[100px] animate-float-2"></div>
+        <div class="absolute -bottom-[20%] left-[20%] w-[60%] h-[50%] rounded-full bg-blue-600/15 blur-[100px] animate-float-3"></div>
+    </div>
 
     <!-- Conteneur principal avec une largeur maximale (max-w-5xl) pour conserver une lisibilité optimale sur grand écran -->
-    <main class="max-w-5xl mx-auto px-6 py-20 md:py-32">
+    <main class="relative z-10 max-w-5xl mx-auto px-6 py-20 md:py-40">
         
         <!-- 
           En-tête sémantique : J'utilise 'text-balance' et 'text-pretty' pour une gestion typographique avancée 
           (évite les mots isolés en fin de ligne). La taille du sous-titre est gérée dynamiquement par un clamp().
         -->
         <header class="mb-20 max-w-2xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 tracking-tight mb-4 text-balance">
-                Raphaël Eliard.
-            </h1>
-            <h2 class="text-[clamp(0.55rem,2.5vw,1.25rem)] text-zinc-400 font-medium mb-8 whitespace-nowrap overflow-hidden text-ellipsis">
+            <div class="animate-fade-in-up mb-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-300 to-zinc-500 tracking-tight text-balance animate-gradient-text">
+                    Raphaël Eliard.
+                </h1>
+            </div>
+            <h2 class="text-[clamp(0.55rem,2.5vw,1.25rem)] text-zinc-400 font-medium mb-8 whitespace-nowrap overflow-hidden text-ellipsis animate-fade-in-up delay-100">
                 Ingénieur Génie Civil Nucléaire <span class="mx-1 md:mx-2 text-zinc-600">|</span> <span class="text-zinc-300">Développement d'outils web</span>
             </h2>
-            <p class="text-zinc-400 leading-relaxed text-lg text-pretty">
+            <p class="text-zinc-400 leading-relaxed text-lg text-pretty animate-fade-in-up delay-200">
                 Bienvenue sur mon espace personnel. Ce site sert de répertoire central pour documenter mes travaux et héberger mes applications. Vous trouverez ci-dessous une sélection de mes projets informatiques, développés pour répondre à des problématiques d'ingénierie ou expérimenter des technologies.
             </p>
         </header>
@@ -69,48 +111,48 @@ Description : Bienvenue dans le code source de mon espace web !
               la hauteur des tuiles. L'attribut 'flex-grow' sur le paragraphe pousse 
               naturellement les tags vers le bas pour un alignement parfait entre les cartes.
             -->
-            <a href="https://www.raphaeleliard.dev/PMO/" class="group flex flex-col h-full p-8 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50">
+            <a href="https://www.raphaeleliard.dev/PMO/" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] animate-fade-in-up delay-300">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-medium text-white group-hover:text-zinc-100 transition-colors">Outil de PMO en ingénierie</h3>
-                    <span class="text-zinc-600 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                    <h3 class="text-lg font-medium text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-indigo-400 transition-all duration-300">Outil de PMO en ingénierie</h3>
+                    <span class="text-zinc-600 group-hover:text-indigo-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
                 </div>
                 <p class="text-zinc-400 text-sm mb-6 flex-grow text-pretty">
                     Outil web en single-page développé pour répondre aux problématiques de gestion des heures d'études dans un contexte complexe et confidentiel.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Web App</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Data Analysis</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Project Management</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">KPI</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Web App</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Data Analysis</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Project Management</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">KPI</span>
                 </div>
             </a>
 
-            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" class="group flex flex-col h-full p-8 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50">
+            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] animate-fade-in-up delay-400">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-medium text-white group-hover:text-zinc-100 transition-colors">Calcul Béton Armé</h3>
-                    <span class="text-zinc-600 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                    <h3 class="text-lg font-medium text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-emerald-400 transition-all duration-300">Calcul Béton Armé</h3>
+                    <span class="text-zinc-600 group-hover:text-emerald-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
                 </div>
                 <p class="text-zinc-400 text-sm mb-6 flex-grow text-pretty">
                     Outil de calcul de structure en béton armé complet, multi-pages et automatisé, avec visualisation des plans de ferraillage.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Web App</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Calcul EC2</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Visualisation</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Web App</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Calcul EC2</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Visualisation</span>
                 </div>
             </a>
 
-            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" class="group flex flex-col h-full p-8 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50">
+            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] animate-fade-in-up delay-500">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-medium text-white group-hover:text-zinc-100 transition-colors">Gestion de budget</h3>
-                    <span class="text-zinc-600 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                    <h3 class="text-lg font-medium text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-purple-400 transition-all duration-300">Gestion de budget</h3>
+                    <span class="text-zinc-600 group-hover:text-purple-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
                 </div>
                 <p class="text-zinc-400 text-sm mb-6 flex-grow text-pretty">
                     Outil créé pour répondre à un besoin de gestion de budget personnel, sécurisé et exécuté en local.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Web App</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-full border border-zinc-700/50">Data Analysis</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Web App</span>
+                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Data Analysis</span>
                 </div>
             </a>
 
@@ -118,8 +160,8 @@ Description : Bienvenue dans le code source de mon espace web !
               Carte "En cours" : L'utilisation d'une bordure en pointillés (border-dashed) 
               permet d'indiquer intuitivement et visuellement que cet élément n'est pas encore actif.
             -->
-            <div class="p-8 rounded-2xl bg-zinc-900/30 border border-dashed border-zinc-800/80 flex flex-col h-full items-center justify-center text-center">
-                <span class="text-3xl mb-3 text-zinc-700">🚧</span>
+            <div class="p-8 rounded-3xl bg-zinc-900/20 border border-dashed border-zinc-800/80 backdrop-blur-sm flex flex-col h-full items-center justify-center text-center animate-fade-in-up delay-600 transition-all duration-500 hover:-translate-y-0.5 hover:bg-zinc-900/30">
+                <span class="text-3xl mb-3 text-zinc-700" aria-hidden="true">🚧</span>
                 <h3 class="text-lg font-medium text-zinc-500">Outil en développement</h3>
                 <p class="text-zinc-600 text-sm mt-2 flex-grow text-pretty">Prochainement disponible...</p>
                 <div class="flex flex-wrap gap-2 mt-6 justify-center">
@@ -134,14 +176,14 @@ Description : Bienvenue dans le code source de mon espace web !
               ici pour l'accessibilité (a11y). Cela permet aux lecteurs d'écran d'interpréter 
               correctement la destination du lien, car un émoji seul n'est pas explicite.
             -->
-            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" aria-label="Voir mon profil LinkedIn" class="group p-8 rounded-2xl bg-transparent border border-dashed border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800/30 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full items-center justify-center text-center">
-                <span class="text-3xl mb-3 text-zinc-600 group-hover:text-[#0a66c2] transition-all duration-300 group-hover:scale-110">💼</span>
+            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn" class="group p-8 rounded-3xl bg-transparent border border-dashed border-zinc-700 hover:border-solid hover:border-[#0a66c2]/50 hover:bg-[#0a66c2]/10 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(10,102,194,0.3)] flex flex-col h-full items-center justify-center text-center animate-fade-in-up delay-700">
+                <span class="text-3xl mb-3 text-zinc-600 group-hover:text-[#0a66c2] transition-all duration-300 group-hover:scale-125 group-hover:-translate-y-1" aria-hidden="true">💼</span>
                 <h3 class="text-lg font-medium text-zinc-300 group-hover:text-white transition-colors">Parcours Professionnel</h3>
                 <p class="text-zinc-500 text-sm mt-2">Voir mon profil LinkedIn</p>
             </a>
 
-            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" class="group p-8 rounded-2xl bg-transparent border border-dashed border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800/30 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full items-center justify-center text-center">
-                <span class="text-3xl mb-3 text-zinc-600 group-hover:text-zinc-300 transition-all duration-300 group-hover:scale-110">✉️</span>
+            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" class="group p-8 rounded-3xl bg-transparent border border-dashed border-zinc-700 hover:border-solid hover:border-zinc-400/50 hover:bg-zinc-100/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.15)] flex flex-col h-full items-center justify-center text-center animate-fade-in-up delay-700">
+                <span class="text-3xl mb-3 text-zinc-600 group-hover:text-zinc-300 transition-all duration-300 group-hover:scale-125 group-hover:-translate-y-1" aria-hidden="true">✉️</span>
                 <h3 class="text-lg font-medium text-zinc-300 group-hover:text-white transition-colors">Me contacter</h3>
                 <p class="text-zinc-500 text-sm mt-2">M'envoyer un email</p>
             </a>
@@ -149,7 +191,7 @@ Description : Bienvenue dans le code source de mon espace web !
         </div>
 
         <!-- Pied de page sémantique -->
-        <footer class="mt-24 pt-8 border-t border-zinc-800 text-zinc-500 text-sm flex justify-center items-center">
+        <footer class="mt-24 pt-8 border-t border-zinc-800 text-zinc-500 text-sm flex justify-center items-center animate-fade-in-up delay-700">
             <p>© <span id="current-year">2024</span> Raphaël Eliard.</p>
         </footer>
 
