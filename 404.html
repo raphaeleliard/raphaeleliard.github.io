@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+===========================================================================
+Projet      : Portfolio Personnel & Hub d'Applications Web
+Auteur      : Raphaël Eliard
+Description : Page d'erreur 404 personnalisée pour le site.
+              Développé avec HTML5 sémantique et Tailwind CSS.
+              Harmonisé avec le thème et le design global du portfolio.
+===========================================================================
+-->
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Métadonnées SEO -->
+    <meta name="description" content="La page demandée est introuvable. Naviguez vers l'accueil du portfolio de Raphaël Eliard." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.raphaeleliard.dev/404.html" />
+    <meta property="og:title" content="404 - Page non trouvée | Raphaël Eliard" />
+    <meta property="og:description" content="La page recherchée n'existe pas ou a été déplacée." />
+    <meta property="og:image" content="https://www.raphaeleliard.dev/Visuel-Page.png" />
+
+    <title>404 - Page non trouvée | Raphaël Eliard</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚠️</text></svg>" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; translate: 0 30px; }
+            to { opacity: 1; translate: 0 0; }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-text {
+            background-size: 200% auto;
+            animation: gradientMove 6s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            33% { transform: translateY(-30px) translateX(20px); }
+            66% { transform: translateY(20px) translateX(-30px); }
+        }
+        .animate-float-1 { animation: float 18s ease-in-out infinite; }
+        .animate-float-2 { animation: float 22s ease-in-out infinite reverse; }
+        .animate-float-3 { animation: float 26s ease-in-out infinite; }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-zinc-700 selection:text-white relative z-0 flex items-center justify-center">
+    
+    <!-- Arrière-plan : Effets de lueurs ambiantes animées -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[100px] animate-float-1"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-emerald-600/15 blur-[100px] animate-float-2"></div>
+        <div class="absolute -bottom-[20%] left-[20%] w-[60%] h-[50%] rounded-full bg-blue-600/15 blur-[100px] animate-float-3"></div>
+    </div>
+
+    <!-- Conteneur principal -->
+    <main class="relative z-10 max-w-2xl mx-auto px-6 py-12 text-center">
+        
+        <!-- Code d'erreur géant avec effet de lueur -->
+        <div class="relative inline-block mb-6 animate-fade-in-up">
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full blur-3xl opacity-20 animate-pulse-glow"></div>
+            <h1 id="error-code" class="relative text-[120px] md:text-[180px] font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-700 tracking-tighter leading-none select-none">
+                404
+            </h1>
+        </div>
+
+        <!-- Titre & Description -->
+        <header class="mb-10">
+            <h2 id="error-title" class="text-2xl md:text-3xl font-extrabold text-white mb-4 animate-fade-in-up delay-100">
+                Singularité détectée : Page introuvable
+            </h2>
+            <p id="error-desc" class="text-zinc-400 leading-relaxed text-base md:text-lg max-w-md mx-auto text-pretty animate-fade-in-up delay-200">
+                Le maillage de cette page a rencontré une anomalie ou le chemin demandé est hors gabarit. Pas d'inquiétude, la structure du portail reste stable.
+            </p>
+        </header>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up delay-300">
+            <a id="btn-home" href="https://www.raphaeleliard.dev/" class="w-full sm:w-auto px-8 py-3 rounded-full bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all duration-300 shadow-[0_4px_20px_-5px_rgba(255,255,255,0.3)] hover:-translate-y-0.5">
+                Retour à l'accueil
+            </a>
+            <a id="btn-contact" href="mailto:admin@raphaeleliard.dev" class="w-full sm:w-auto px-8 py-3 rounded-full bg-zinc-900/60 border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-800/80 transition-all duration-300 hover:-translate-y-0.5">
+                Signaler un problème
+            </a>
+        </div>
+
+        <!-- Raccourcis rapides vers les projets clés -->
+        <div class="pt-8 border-t border-zinc-800/80 animate-fade-in-up delay-400">
+            <p class="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-4">Accès rapide aux applications</p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a id="link-beton" href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" class="px-4 py-2 rounded-xl bg-zinc-900/40 border border-zinc-800 text-sm text-zinc-400 hover:text-white hover:border-emerald-500/50 hover:bg-zinc-800/40 transition-all duration-300">
+                    Calcul Béton Armé
+                </a>
+                <a id="link-budget" href="https://www.raphaeleliard.dev/Gestion-Budget/" class="px-4 py-2 rounded-xl bg-zinc-900/40 border border-zinc-800 text-sm text-zinc-400 hover:text-white hover:border-purple-500/50 hover:bg-zinc-800/40 transition-all duration-300">
+                    Gestion de budget
+                </a>
+                <a id="link-pmo" href="https://www.raphaeleliard.dev/PMO/" class="px-4 py-2 rounded-xl bg-zinc-900/40 border border-zinc-800 text-sm text-zinc-400 hover:text-white hover:border-indigo-500/50 hover:bg-zinc-800/40 transition-all duration-300">
+                    Suivi de Projets
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-zinc-600 text-xs">
+            <p>© <span id="current-year">2024</span> Raphaël Eliard. Tous droits réservés.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
