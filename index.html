@@ -29,8 +29,8 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes fadeInUp {
-            from { opacity: 0; translate: 0 30px; }
-            to { opacity: 1; translate: 0 0; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in-up {
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -66,155 +66,266 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="7435bf73-8c46-4cca-8513-4f48bb2aad68"></script>
 </head>
-<!-- 
-  Structure globale (Body) :
-  Mise en place du thème sombre (bg-zinc-950) et personnalisation 
-  de la couleur de sélection de texte pour un rendu UI cohérent.
--->
 <body class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-zinc-700 selection:text-white relative z-0">
     
-    <!-- Arrière-plan : Effets de lueurs ambiantes animées (inspiré du Glassmorphism) -->
+    <!-- Arrière-plan : Lueurs d'ambiance adoucies et étalées -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[100px] animate-float-1"></div>
-        <div class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-emerald-600/15 blur-[100px] animate-float-2"></div>
-        <div class="absolute -bottom-[20%] left-[20%] w-[60%] h-[50%] rounded-full bg-blue-600/15 blur-[100px] animate-float-3"></div>
+        <div class="absolute -top-[10%] -left-[10%] w-[55%] h-[55%] rounded-full bg-purple-900/20 blur-[150px] animate-float-1"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[45%] h-[45%] rounded-full bg-emerald-600/15 blur-[150px] animate-float-2"></div>
+        <div class="absolute top-[50%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-800/15 blur-[150px] animate-float-3 animate-reverse"></div>
+        <div class="absolute -bottom-[15%] right-[15%] w-[55%] h-[55%] rounded-full bg-blue-900/20 blur-[150px] animate-float-1"></div>
     </div>
 
-    <!-- Conteneur principal avec une largeur maximale (max-w-5xl) pour conserver une lisibilité optimale sur grand écran -->
-    <main class="relative z-10 max-w-5xl mx-auto px-6 py-20 md:py-40">
+    <!-- Conteneur principal -->
+    <main class="relative z-10 max-w-5xl mx-auto px-6 py-20 md:py-36">
         
-        <!-- 
-          Section En-tête (Header) :
-          - Typographie : Classes 'text-balance' et 'text-pretty' pour éviter les orphelins en fin de ligne.
-          - Taille fluide : Utilisation de clamp() pour adapter le sous-titre dynamiquement selon l'écran.
-        -->
-        <header class="mb-20 max-w-2xl">
+        <!-- En-tête (Header) -->
+        <header class="mb-20 max-w-3xl">
             <div class="animate-fade-in-up mb-4">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-300 to-zinc-500 tracking-tight text-balance animate-gradient-text">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-500 tracking-tight text-balance animate-gradient-text">
                     Raphaël Eliard.
                 </h1>
             </div>
-            <h2 class="text-[clamp(0.55rem,2.5vw,1.25rem)] text-zinc-400 font-medium mb-8 whitespace-nowrap overflow-hidden text-ellipsis animate-fade-in-up delay-100">
-                Ingénieur Génie Civil Nucléaire <span class="mx-1 md:mx-2 text-zinc-600">|</span> <span class="text-zinc-300">Développement d'outils web</span>
+            
+            <h2 class="text-lg md:text-xl text-zinc-400 font-medium mb-8 animate-fade-in-up delay-100">
+                Ingénieur Génie Civil Nucléaire <span class="mx-2 text-zinc-700">|</span> <span class="text-zinc-300">Développement d'outils web</span>
             </h2>
-            <p class="text-zinc-400 leading-relaxed text-lg text-pretty animate-fade-in-up delay-200">
-                Bienvenue sur mon espace personnel. Ce site sert de répertoire central pour documenter mes travaux et héberger mes applications. Vous trouverez ci-dessous une sélection de mes projets informatiques, développés pour répondre à des problématiques d'ingénierie ou expérimenter des technologies.
+            
+            <p class="text-zinc-400 leading-relaxed text-base md:text-lg text-pretty animate-fade-in-up delay-200">
+                Bienvenue sur mon espace personnel. Ce site sert de répertoire central pour documenter mes travaux et héberger mes applications. Vous trouverez ci-dessous une sélection de mes projets informatiques, développés pour répondre à des problématiques d'ingénierie, personnelle ou expérimenter des technologies.
             </p>
         </header>
 
-        <!-- 
-          Grille principale (CSS Grid) :
-          Structure responsive passant de 1 colonne (mobile) à 2 (tablette) puis 3 (bureau).
-        -->
+        <!-- Grille principale des projets (Alignement des hauteurs de cartes) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] animate-fade-in-up delay-300">
-                <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-lg font-medium text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-emerald-400 transition-all duration-300 truncate">Calcul Béton Armé</h3>
-                    <span class="ml-4 shrink-0 text-zinc-600 group-hover:text-emerald-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            <!-- PROJET 1 : Gestion de budget -->
+            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" id="card-budget" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
+                <!-- Flèche absolue -->
+                <div class="absolute top-8 right-8">
+                    <span class="text-zinc-600 group-hover:text-purple-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
                 </div>
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="text-xs font-medium text-amber-300 border border-amber-700/50 bg-amber-900/30 px-2 py-0.5 rounded-md">Scolaire</span>
-                    <span class="text-xs font-mono text-zinc-500 border border-zinc-700/50 bg-zinc-800/30 px-2 py-0.5 rounded-md group-hover:border-emerald-500/30 group-hover:text-emerald-300 transition-colors">v1.20</span>
+
+                <!-- En-tête de Carte -->
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="p-3 bg-purple-950/30 rounded-2xl border border-purple-500/10 text-purple-400 group-hover:border-purple-500/30 group-hover:bg-purple-950/50 transition-colors duration-300 shrink-0">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow min-w-0 pr-6">
+                        <h3 class="text-[clamp(13px,4.5vw,18px)] whitespace-nowrap font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-purple-400 transition-all duration-300">Gestion de budget</h3>
+                        <div class="flex items-center gap-1.5 mt-1.5 h-5 overflow-hidden">
+                            <span class="text-[9px] font-mono text-zinc-500 border border-zinc-800 bg-zinc-900/50 px-1.5 py-0.5 rounded">v1.11</span>
+                            <span class="text-[9px] font-semibold text-teal-400 bg-teal-950/20 border border-teal-500/20 px-1.5 py-0.5 rounded">Perso</span>
+                            <span class="text-[9px] font-semibold text-purple-400 bg-purple-950/20 border border-purple-500/20 px-1.5 py-0.5 rounded">⇄ Interconnecté</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-zinc-400 text-sm mb-6 flex-grow text-pretty">
+                
+                <!-- Description -->
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                    Application web dédiée à la gestion fine des finances personnelles. Conçue avec deux approches : "Local" pour la souveraineté des données et "Cloud" pour la flexibilité de synchronisation.
+                </p>
+                
+                <!-- Mots-clés Techniques -->
+                <div class="mt-auto pt-5 border-t border-zinc-900/80 flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-purple-500/20 transition-colors">BDD</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-purple-500/20 transition-colors">Analyse de données</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-purple-500/20 transition-colors">Cloud</span>
+                </div>
+            </a>
+
+            <!-- PROJET 2 : Gestion Patrimoine -->
+            <a href="https://www.raphaeleliard.dev/Gestion-Patrimoine/" id="card-patrimoine" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
+                <!-- Flèche absolue -->
+                <div class="absolute top-8 right-8">
+                    <span class="text-zinc-650 group-hover:text-amber-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+                </div>
+
+                <!-- En-tête de Carte -->
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="p-3 bg-amber-950/30 rounded-2xl border border-amber-500/10 text-amber-400 group-hover:border-amber-500/30 group-hover:bg-amber-950/50 transition-colors duration-300 shrink-0">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow min-w-0 pr-6">
+                        <h3 class="text-[clamp(13px,4.5vw,18px)] whitespace-nowrap font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-amber-400 transition-all duration-300">Gestion Patrimoine</h3>
+                        <div class="flex items-center gap-1.5 mt-1.5 h-5 overflow-hidden">
+                            <span class="text-[9px] font-mono text-zinc-500 border border-zinc-800 bg-zinc-900/50 px-1.5 py-0.5 rounded">v1.00</span>
+                            <span class="text-[9px] font-semibold text-teal-400 bg-teal-950/20 border border-teal-500/20 px-1.5 py-0.5 rounded">Perso</span>
+                            <span class="text-[9px] font-semibold text-amber-400 bg-amber-950/20 border border-amber-500/20 px-1.5 py-0.5 rounded">⇄ Interconnecté</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                    Application web de suivi macroéconomique de santé financière à long terme. Valorisation globale d'actifs, structure de dettes, allocations cibles et simulateurs de projections.
+                </p>
+                
+                <!-- Mots-clés Techniques (Avec le tag Nouveau intégré à côté de Requêtes API) -->
+                <div class="mt-auto pt-5 border-t border-zinc-900/80 flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-amber-500/20 transition-colors">Interconnectivité</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-amber-500/20 transition-colors">Finance</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-amber-500/20 transition-colors">Requêtes API</span>
+                    <span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-amber-950/60 border border-amber-500/30 text-amber-400 group-hover:border-amber-500/50 transition-colors animate-pulse uppercase tracking-wider">Nouveau</span>
+                </div>
+            </a>
+
+            <!-- PROJET 3 : Calcul Béton Armé -->
+            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" id="card-beton" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-400">
+                <!-- Flèche absolue -->
+                <div class="absolute top-8 right-8">
+                    <span class="text-zinc-650 group-hover:text-emerald-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+                </div>
+
+                <!-- En-tête de Carte -->
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="p-3 bg-emerald-950/30 rounded-2xl border border-emerald-500/10 text-emerald-400 group-hover:border-emerald-500/30 group-hover:bg-emerald-950/50 transition-colors duration-300 shrink-0">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="3" width="16" height="18" rx="2" />
+                            <rect x="7" y="6" width="10" height="4" rx="1" />
+                            <circle cx="8" cy="13" r="1" fill="currentColor" />
+                            <circle cx="12" cy="13" r="1" fill="currentColor" />
+                            <circle cx="16" cy="13" r="1" fill="currentColor" />
+                            <circle cx="8" cy="17" r="1" fill="currentColor" />
+                            <circle cx="12" cy="17" r="1" fill="currentColor" />
+                            <circle cx="16" cy="17" r="1" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow min-w-0 pr-6">
+                        <h3 class="text-[clamp(13px,4.5vw,18px)] whitespace-nowrap font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-emerald-400 transition-all duration-300">Calcul Béton Armé</h3>
+                        <div class="flex items-center gap-1.5 mt-1.5 h-5 overflow-hidden">
+                            <span class="text-[9px] font-mono text-zinc-500 border border-zinc-800 bg-zinc-900/50 px-1.5 py-0.5 rounded">v1.20</span>
+                            <span class="text-[9px] font-semibold text-amber-300 bg-amber-950/20 border border-amber-500/20 px-1.5 py-0.5 rounded">Scolaire</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6">
                     Application automatisée de dimensionnement d'ouvrages en béton armé selon l'Eurocode 2, intégrant la génération dynamique et la visualisation des plans de ferraillage.
                 </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Génie Civil</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Eurocode 2</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Génération de Plans</span>
+                
+                <!-- Mots-clés Techniques -->
+                <div class="mt-auto pt-5 border-t border-zinc-900/80 flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-emerald-500/20 transition-colors">Eurocode 2</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-emerald-500/20 transition-colors">RDM</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-emerald-500/20 transition-colors">Ferraillage dynamique</span>
                 </div>
             </a>
 
-            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] animate-fade-in-up delay-400">
-                <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-lg font-medium text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-purple-400 transition-all duration-300 truncate">Gestion de budget</h3>
-                    <span class="ml-4 shrink-0 text-zinc-600 group-hover:text-purple-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            <!-- PROJET 4 : Outil de Suivi de Projets -->
+            <a href="https://www.raphaeleliard.dev/PMO/" id="card-pmo" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-500">
+                <!-- Flèche absolue -->
+                <div class="absolute top-8 right-8">
+                    <span class="text-zinc-650 group-hover:text-indigo-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
                 </div>
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="text-xs font-medium text-teal-300 border border-teal-700/50 bg-teal-900/30 px-2 py-0.5 rounded-md">Perso</span>
-                    <span class="text-xs font-mono text-zinc-500 border border-zinc-700/50 bg-zinc-800/30 px-2 py-0.5 rounded-md group-hover:border-purple-500/30 group-hover:text-purple-300 transition-colors">v1.11</span>
+
+                <!-- En-tête de Carte -->
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="p-3 bg-indigo-950/30 rounded-2xl border border-indigo-500/10 text-indigo-400 group-hover:border-indigo-500/30 group-hover:bg-indigo-950/50 transition-colors duration-300 shrink-0">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 112-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow min-w-0 pr-6">
+                        <h3 class="text-[clamp(13px,4.5vw,18px)] whitespace-nowrap font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-indigo-400 transition-all duration-300">Suivi de Projets</h3>
+                        <div class="flex items-center gap-1.5 mt-1.5 h-5 overflow-hidden">
+                            <span class="text-[9px] font-mono text-zinc-500 border border-zinc-800 bg-zinc-900/50 px-1.5 py-0.5 rounded">v1.31</span>
+                            <span class="text-[9px] font-semibold text-blue-300 bg-blue-950/20 border border-blue-500/20 px-1.5 py-0.5 rounded">Pro</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-zinc-400 text-sm mb-6 flex-grow text-pretty">
-                    Application web dédiée à la gestion fine des finances personnelles. Conçue avec deux approches "Local" pour la confidentialité et "Cloud" pour la flexibilité.
+                
+                <!-- Description -->
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                    Application web (SPA) de pilotage conçue pour optimiser le suivi budgétaire et la gestion des heures d'études en ingénierie au sein d'un environnement complexe.
                 </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Finance</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">BDD</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Analyse de Données</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Sécurité</span>
+                
+                <!-- Mots-clés Techniques -->
+                <div class="mt-auto pt-5 border-t border-zinc-900/80 flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-indigo-500/20 transition-colors">SPA</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-indigo-500/20 transition-colors">Visualisation KPI</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 group-hover:border-indigo-500/20 transition-colors">Dashboard</span>
                 </div>
             </a>
 
-            <!-- 
-              Composant : Carte Projet
-              - Flexbox (flex-col, h-full) permet d'uniformiser la hauteur des tuiles.
-              - 'flex-grow' sur la description repousse les badges en bas de carte,
-                garantissant un alignement vertical parfait pour toutes les tuiles.
-            -->
-            <a href="https://www.raphaeleliard.dev/PMO/" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] animate-fade-in-up delay-500">
-                <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-lg font-medium text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-indigo-400 transition-all duration-300 truncate">Outil de Suivi de Projets</h3>
-                    <span class="ml-4 shrink-0 text-zinc-600 group-hover:text-indigo-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            <!-- PROJET 5 : Outil en développement -->
+            <div id="card-templ" class="p-8 rounded-3xl bg-zinc-900/20 border border-dashed border-zinc-800/80 backdrop-blur-sm flex flex-col h-full relative animate-fade-in-up delay-600 transition-all duration-500 hover:-translate-y-2 hover:bg-zinc-900/30">
+                <!-- En cours absolu -->
+                <div class="absolute top-8 right-8">
+                    <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-wider bg-zinc-950/60 border border-zinc-800/50 px-2.5 py-0.5 rounded-full shrink-0">En cours</span>
                 </div>
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="text-xs font-medium text-blue-300 border border-blue-700/50 bg-blue-900/30 px-2 py-0.5 rounded-md">Pro</span>
-                    <span class="text-xs font-mono text-zinc-500 border border-zinc-700/50 bg-zinc-800/30 px-2 py-0.5 rounded-md group-hover:border-indigo-500/30 group-hover:text-indigo-300 transition-colors">v1.31</span>
+
+                <!-- En-tête de Carte -->
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="p-3 bg-zinc-950/40 rounded-2xl border border-zinc-800/50 text-zinc-500 shrink-0">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow min-w-0 pr-6">
+                        <h3 class="text-[clamp(13px,4.5vw,18px)] whitespace-nowrap font-semibold text-zinc-500">Outil en dév</h3>
+                        <div class="flex items-center gap-1.5 mt-1.5 h-5 overflow-hidden">
+                            <span class="text-[9px] font-mono text-zinc-650 border border-zinc-800/60 bg-zinc-900/10 px-1.5 py-0.5 rounded">v0.10</span>
+                            <span class="text-[9px] font-semibold text-zinc-655 bg-zinc-900/10 border border-zinc-800/20 px-1.5 py-0.5 rounded">Social / Scolaire</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-zinc-400 text-sm mb-6 flex-grow text-pretty">
-                    Application web (SPA) conçue pour optimiser le suivi budgétaire et la gestion des heures d'études en ingénierie, au sein d'un environnement complexe et confidentiel.
+                
+                <!-- Description -->
+                <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+                    Développement d'une application web progressive (PWA) modulaire articulée autour d'un moteur de synchronisation asynchrone hors-ligne et d'un modèle relationnel persistant.
                 </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Single-Page App</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Data Viz</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Suivi KPI</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/80 text-zinc-300 rounded-full border border-zinc-700/50 group-hover:border-zinc-600/80 transition-colors">Dashboard</span>
-                </div>
-            </a>
-
-            <!-- 
-              Composant : Carte "En développement"
-              L'utilisation d'une bordure pointillée (border-dashed) et d'un fond atténué 
-              indique visuellement l'état "inactif" ou futur du projet.
-            -->
-            <div class="p-8 rounded-3xl bg-zinc-900/20 border border-dashed border-zinc-800/80 backdrop-blur-sm flex flex-col h-full items-center justify-center text-center animate-fade-in-up delay-600 transition-all duration-500 hover:-translate-y-0.5 hover:bg-zinc-900/30">
-                <span class="text-3xl mb-3 text-zinc-700" aria-hidden="true">🚧</span>
-                <h3 class="text-lg font-medium text-zinc-500">Outil en développement</h3>
-                <p class="text-zinc-600 text-sm mt-2 flex-grow text-pretty">Prochainement disponible...</p>
-                <div class="flex flex-wrap gap-2 mt-6 justify-center">
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/30 text-zinc-500 rounded-full border border-zinc-700/50">Full-Stack</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/30 text-zinc-500 rounded-full border border-zinc-700/50">Base de Données</span>
-                    <span class="px-3 py-1 text-xs font-medium bg-zinc-800/30 text-zinc-500 rounded-full border border-zinc-700/50">Architecture</span>
+                
+                <!-- Mots-clés Techniques -->
+                <div class="mt-auto pt-5 border-t border-zinc-900/80 flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900/40 border border-zinc-800/80 text-zinc-600">PWA</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900/40 border border-zinc-800/80 text-zinc-600">Optimisation réseau</span>
+                    <span class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-zinc-900/40 border border-zinc-800/80 text-zinc-600">Gestion de données</span>
                 </div>
             </div>
 
-            <!-- 
-              Composants : Liens sociaux et Contact
-              L'intégration des attributs 'aria-label' et 'aria-hidden' assure l'accessibilité (a11y).
-              Cela permet aux lecteurs d'écran d'ignorer les émojis décoratifs et de lire une description claire.
-            -->
-            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn" class="group p-8 rounded-3xl bg-transparent border border-dashed border-zinc-700 hover:border-solid hover:border-[#0a66c2]/50 hover:bg-[#0a66c2]/10 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(10,102,194,0.3)] flex flex-col h-full items-center justify-center text-center animate-fade-in-up delay-700">
-                <span class="text-3xl mb-3 text-zinc-600 group-hover:text-[#0a66c2] transition-all duration-300 group-hover:scale-125 group-hover:-translate-y-1" aria-hidden="true">💼</span>
-                <h3 class="text-lg font-medium text-zinc-300 group-hover:text-white transition-colors">Parcours Professionnel</h3>
-                <p class="text-zinc-500 text-sm mt-2">Voir mon profil LinkedIn</p>
+        </div>
+
+        <!-- Section Contact / Réseaux Sociaux -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn" id="card-linkedin" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-[#0a66c2]/40 hover:bg-[#0a66c2]/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(10,102,194,0.15)] flex flex-col items-center text-center animate-fade-in-up delay-700">
+                <span class="p-2.5 bg-zinc-900/60 rounded-xl border border-zinc-800 group-hover:border-[#0a66c2]/20 group-hover:bg-[#0a66c2]/10 transition-all duration-300 group-hover:scale-110 mb-3" aria-hidden="true">
+                    <svg class="w-5 h-5 text-zinc-500 group-hover:text-[#0a66c2] transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </span>
+                <h3 class="text-sm font-medium text-zinc-300 group-hover:text-white transition-colors">Parcours Professionnel</h3>
+                <p class="text-zinc-500 text-xs mt-1">Consulter mon profil LinkedIn</p>
             </a>
 
-            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" class="group p-8 rounded-3xl bg-transparent border border-dashed border-zinc-700 hover:border-solid hover:border-zinc-400/50 hover:bg-zinc-100/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.15)] flex flex-col h-full items-center justify-center text-center animate-fade-in-up delay-700">
-                <span class="text-3xl mb-3 text-zinc-600 group-hover:text-zinc-300 transition-all duration-300 group-hover:scale-125 group-hover:-translate-y-1" aria-hidden="true">✉️</span>
-                <h3 class="text-lg font-medium text-zinc-300 group-hover:text-white transition-colors">Me contacter</h3>
-                <p class="text-zinc-500 text-sm mt-2">M'envoyer un email</p>
+            <!-- Contact -->
+            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" id="card-contact" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-zinc-400/40 hover:bg-zinc-100/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(255,255,255,0.06)] flex flex-col items-center text-center animate-fade-in-up delay-700">
+                <span class="p-2.5 bg-zinc-900/60 rounded-xl border border-zinc-800 group-hover:border-zinc-500/20 group-hover:bg-zinc-850 transition-all duration-300 group-hover:scale-110 mb-3" aria-hidden="true">
+                    <svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </span>
+                <h3 class="text-sm font-medium text-zinc-300 group-hover:text-white transition-colors">Me contacter</h3>
+                <p class="text-zinc-500 text-xs mt-1">admin@raphaeleliard.dev</p>
             </a>
 
         </div>
 
-        <!-- Pied de page sémantique -->
-        <footer class="mt-24 pt-8 border-t border-zinc-800 text-zinc-500 text-sm flex justify-center items-center animate-fade-in-up delay-700">
+        <!-- Pied de page -->
+        <footer class="mt-24 pt-8 border-t border-zinc-900 text-zinc-500 text-sm flex justify-center items-center animate-fade-in-up delay-700">
             <p>© <span id="current-year">2024</span> Raphaël Eliard.</p>
         </footer>
 
     </main>
-    <!-- Actualisation dynamique de l'année courante pour le copyright du footer -->
+    
+    <!-- Actualisation dynamique de l'année courante -->
     <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
