@@ -21,8 +21,13 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
     <meta property="og:title" content="Raphaël Eliard - Ingénieur & Développeur" />
     <meta property="og:description" content="Découvrez mes projets informatiques développés pour répondre à des problématiques d'ingénierie." />
     <meta property="og:image" content="https://www.raphaeleliard.dev/Visuel-Page.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Raphaël Eliard" />
+    <meta name="twitter:description" content="Portfolio de Raphaël Eliard, Ingénieur Génie Civil Nucléaire et développeur d'outils web." />
+    <meta name="twitter:image" content="https://www.raphaeleliard.dev/Visuel-Page.png" />
+    <link rel="canonical" href="https://www.raphaeleliard.dev/" />
 
-    <title>Raphaël Eliard - Projets</title>
+    <title>Raphaël Eliard</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>" />
 
@@ -65,15 +70,29 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
     </style>
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="7435bf73-8c46-4cca-8513-4f48bb2aad68"></script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Raphaël Eliard",
+      "jobTitle": "Ingénieur Génie Civil Nucléaire & Développeur Web",
+      "url": "https://www.raphaeleliard.dev/",
+      "sameAs": [
+        "https://www.linkedin.com/in/raphaeleliard"
+      ]
+    }
+    </script>
 </head>
 <body class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-zinc-700 selection:text-white relative z-0">
     
     <!-- Arrière-plan : Lueurs d'ambiance adoucies et étalées -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="absolute -top-[10%] -left-[10%] w-[55%] h-[55%] rounded-full bg-purple-900/20 blur-[150px] animate-float-1"></div>
-        <div class="absolute top-[20%] -right-[10%] w-[45%] h-[45%] rounded-full bg-emerald-600/15 blur-[150px] animate-float-2"></div>
-        <div class="absolute top-[50%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-800/15 blur-[150px] animate-float-3 animate-reverse"></div>
-        <div class="absolute -bottom-[15%] right-[15%] w-[55%] h-[55%] rounded-full bg-blue-900/20 blur-[150px] animate-float-1"></div>
+        <div class="absolute -top-[10%] -left-[10%] w-[55%] h-[55%] rounded-full bg-purple-900/20 blur-[150px] animate-float-1 will-change-transform"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[45%] h-[45%] rounded-full bg-emerald-600/15 blur-[150px] animate-float-2 will-change-transform"></div>
+        <div class="absolute top-[50%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-800/15 blur-[150px] animate-float-3 animate-reverse will-change-transform"></div>
+        <div class="absolute -bottom-[15%] right-[15%] w-[55%] h-[55%] rounded-full bg-blue-900/20 blur-[150px] animate-float-1 will-change-transform"></div>
     </div>
 
     <!-- Conteneur principal -->
@@ -100,7 +119,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <!-- PROJET 1 : Gestion de budget -->
-            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" id="card-budget" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
+            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" id="card-budget" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-600 group-hover:text-purple-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -109,7 +128,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
                 <!-- En-tête de Carte -->
                 <div class="flex items-start gap-4 mb-6">
                     <div class="p-3 bg-purple-950/30 rounded-2xl border border-purple-500/10 text-purple-400 group-hover:border-purple-500/30 group-hover:bg-purple-950/50 transition-colors duration-300 shrink-0">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
@@ -137,7 +156,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- PROJET 2 : Gestion Patrimoine -->
-            <a href="https://www.raphaeleliard.dev/Gestion-Patrimoine/" id="card-patrimoine" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
+            <a href="https://www.raphaeleliard.dev/Gestion-Patrimoine/" id="card-patrimoine" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-650 group-hover:text-amber-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -146,7 +165,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
                 <!-- En-tête de Carte -->
                 <div class="flex items-start gap-4 mb-6">
                     <div class="p-3 bg-amber-950/30 rounded-2xl border border-amber-500/10 text-amber-400 group-hover:border-amber-500/30 group-hover:bg-amber-950/50 transition-colors duration-300 shrink-0">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                         </svg>
                     </div>
@@ -175,7 +194,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- PROJET 3 : Calcul Béton Armé -->
-            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" id="card-beton" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-400">
+            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" id="card-beton" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-400">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-650 group-hover:text-emerald-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -184,7 +203,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
                 <!-- En-tête de Carte -->
                 <div class="flex items-start gap-4 mb-6">
                     <div class="p-3 bg-emerald-950/30 rounded-2xl border border-emerald-500/10 text-emerald-400 group-hover:border-emerald-500/30 group-hover:bg-emerald-950/50 transition-colors duration-300 shrink-0">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <rect x="4" y="3" width="16" height="18" rx="2" />
                             <rect x="7" y="6" width="10" height="4" rx="1" />
                             <circle cx="8" cy="13" r="1" fill="currentColor" />
@@ -218,7 +237,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- PROJET 4 : Outil de Suivi de Projets -->
-            <a href="https://www.raphaeleliard.dev/PMO/" id="card-pmo" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-500">
+            <a href="https://www.raphaeleliard.dev/PMO/" id="card-pmo" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-500">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-650 group-hover:text-indigo-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -227,7 +246,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
                 <!-- En-tête de Carte -->
                 <div class="flex items-start gap-4 mb-6">
                     <div class="p-3 bg-indigo-950/30 rounded-2xl border border-indigo-500/10 text-indigo-400 group-hover:border-indigo-500/30 group-hover:bg-indigo-950/50 transition-colors duration-300 shrink-0">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 112-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                         </svg>
                     </div>
@@ -263,7 +282,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
                 <!-- En-tête de Carte -->
                 <div class="flex items-start gap-4 mb-6">
                     <div class="p-2 bg-zinc-950/40 rounded-2xl border border-zinc-800/50 shrink-0 flex items-center justify-center">
-                        <img class="w-8 h-8 object-contain rounded-lg opacity-40 grayscale" src="logo_templ.png" alt="Logo Templ" />
+                        <img class="w-8 h-8 object-contain rounded-lg opacity-40 grayscale" src="projet_confidentiel.png" alt="Projet confidentiel" width="32" height="32" loading="lazy" />
                     </div>
                     <div class="flex-grow min-w-0 pr-6">
                         <h3 class="text-[clamp(13px,4.5vw,18px)] whitespace-nowrap font-semibold text-zinc-500">Outil en dév</h3>
@@ -293,7 +312,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
         <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
             
             <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn" id="card-linkedin" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-[#0a66c2]/40 hover:bg-[#0a66c2]/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(10,102,194,0.15)] flex flex-col items-center text-center animate-fade-in-up delay-700">
+            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn" id="card-linkedin" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-[#0a66c2]/40 hover:bg-[#0a66c2]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(10,102,194,0.15)] flex flex-col items-center text-center animate-fade-in-up delay-700">
                 <span class="p-2.5 bg-zinc-900/60 rounded-xl border border-zinc-800 group-hover:border-[#0a66c2]/20 group-hover:bg-[#0a66c2]/10 transition-all duration-300 group-hover:scale-110 mb-3" aria-hidden="true">
                     <svg class="w-5 h-5 text-zinc-500 group-hover:text-[#0a66c2] transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -304,7 +323,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- Contact -->
-            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" id="card-contact" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-zinc-400/40 hover:bg-zinc-100/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(255,255,255,0.06)] flex flex-col items-center text-center animate-fade-in-up delay-700">
+            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" id="card-contact" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-zinc-400/40 hover:bg-zinc-100/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(255,255,255,0.06)] flex flex-col items-center text-center animate-fade-in-up delay-700">
                 <span class="p-2.5 bg-zinc-900/60 rounded-xl border border-zinc-800 group-hover:border-zinc-500/20 group-hover:bg-zinc-850 transition-all duration-300 group-hover:scale-110 mb-3" aria-hidden="true">
                     <svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
