@@ -33,9 +33,13 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* On anime `translate` (et non `transform`) : l'animation est en
+           fill-mode forwards, et une animation remplie prend le pas sur
+           toute déclaration normale — elle neutraliserait donc le
+           `transform` des cartes (effet 3D lift ci-dessous). */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; translate: 0 20px; }
+            to { opacity: 1; translate: 0 0; }
         }
         .animate-fade-in-up {
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -67,6 +71,66 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
         .animate-float-1 { animation: float 18s ease-in-out infinite; }
         .animate-float-2 { animation: float 22s ease-in-out infinite reverse; }
         .animate-float-3 { animation: float 26s ease-in-out infinite; }
+
+        /* ---------------------------------------------------------------
+           Effet "3D lift" des cartes
+           L'inclinaison est pilotée par des variables CSS mises à jour en
+           JS (voir bas de page), ce qui évite d'écraser la transformation
+           depuis le style inline et laisse le CSS maître du rendu.
+           --------------------------------------------------------------- */
+        .card-3d {
+            position: relative;
+            transform: perspective(1000px)
+                       rotateX(var(--tilt-x, 0deg))
+                       rotateY(var(--tilt-y, 0deg))
+                       translate3d(0, var(--tilt-lift, 0px), 0)
+                       scale(var(--tilt-scale, 1));
+            transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 500ms ease,
+                        background-color 500ms ease,
+                        box-shadow 500ms ease;
+        }
+        /* Reflet doux qui suit le curseur : renforce la lecture du volume */
+        .card-3d::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(280px circle at var(--tilt-mx, 50%) var(--tilt-my, 50%), rgba(255, 255, 255, 0.05), transparent 65%);
+            transition: opacity 400ms ease;
+        }
+
+        @media (hover: hover) {
+            .card-3d:hover {
+                --tilt-lift: -8px;
+                --tilt-scale: 1.01;
+                z-index: 20;
+            }
+            .card-3d:hover::after { opacity: 1; }
+        }
+
+        /* Pendant le suivi du curseur, la carte doit rester "collée" au pointeur */
+        .card-3d.is-tilting {
+            transition: transform 90ms linear,
+                        border-color 500ms ease,
+                        background-color 500ms ease,
+                        box-shadow 500ms ease;
+            will-change: transform;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card-3d,
+            .card-3d.is-tilting {
+                transition: border-color 500ms ease, background-color 500ms ease, box-shadow 500ms ease;
+            }
+            .card-3d:hover {
+                --tilt-lift: 0px;
+                --tilt-scale: 1;
+            }
+            .card-3d::after { display: none; }
+        }
     </style>
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="7435bf73-8c46-4cca-8513-4f48bb2aad68"></script>
@@ -119,7 +183,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <!-- PROJET 1 : Gestion de budget -->
-            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" id="card-budget" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
+            <a href="https://www.raphaeleliard.dev/Gestion-Budget/" id="card-budget" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm card-3d animate-fade-in-up delay-300">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-600 group-hover:text-purple-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -156,7 +220,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- PROJET 2 : Gestion Patrimoine -->
-            <a href="https://www.raphaeleliard.dev/Gestion-Patrimoine/" id="card-patrimoine" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-300">
+            <a href="https://www.raphaeleliard.dev/Gestion-Patrimoine/" id="card-patrimoine" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm card-3d animate-fade-in-up delay-300">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-650 group-hover:text-amber-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -194,7 +258,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- PROJET 3 : Calcul Béton Armé -->
-            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" id="card-beton" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-400">
+            <a href="https://www.raphaeleliard.dev/Calcul-Beton-Arme/" id="card-beton" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm card-3d animate-fade-in-up delay-400">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-650 group-hover:text-emerald-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -237,7 +301,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- PROJET 4 : Outil de Suivi de Projets -->
-            <a href="https://www.raphaeleliard.dev/PMO/" id="card-pmo" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 relative animate-fade-in-up delay-500">
+            <a href="https://www.raphaeleliard.dev/PMO/" id="card-pmo" class="group flex flex-col h-full p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-500 hover:bg-zinc-800/60 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.05)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm card-3d animate-fade-in-up delay-500">
                 <!-- Flèche absolue -->
                 <div class="absolute top-8 right-8">
                     <span class="text-zinc-650 group-hover:text-indigo-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -273,7 +337,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- PROJET 5 : Outil en développement -->
-            <div id="card-templ" class="p-8 rounded-3xl bg-zinc-900/20 border border-dashed border-zinc-800/80 backdrop-blur-sm flex flex-col h-full relative animate-fade-in-up delay-600 transition-all duration-500 hover:-translate-y-2 hover:bg-zinc-900/30">
+            <div id="card-templ" data-tilt-max="4" class="p-8 rounded-3xl bg-zinc-900/20 border border-dashed border-zinc-800/80 backdrop-blur-sm flex flex-col h-full card-3d animate-fade-in-up delay-600 hover:bg-zinc-900/30">
                 <!-- En cours absolu -->
                 <div class="absolute top-8 right-8">
                     <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-wider bg-zinc-950/60 border border-zinc-800/50 px-2.5 py-0.5 rounded-full shrink-0">En cours</span>
@@ -312,7 +376,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
         <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
             
             <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn" id="card-linkedin" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-[#0a66c2]/40 hover:bg-[#0a66c2]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(10,102,194,0.15)] flex flex-col items-center text-center animate-fade-in-up delay-700">
+            <a href="https://www.linkedin.com/in/raphaeleliard" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn" id="card-linkedin" data-tilt-max="3" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-[#0a66c2]/40 hover:bg-[#0a66c2]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm card-3d hover:shadow-[0_15px_35px_-15px_rgba(10,102,194,0.15)] flex flex-col items-center text-center animate-fade-in-up delay-700">
                 <span class="p-2.5 bg-zinc-900/60 rounded-xl border border-zinc-800 group-hover:border-[#0a66c2]/20 group-hover:bg-[#0a66c2]/10 transition-all duration-300 group-hover:scale-110 mb-3" aria-hidden="true">
                     <svg class="w-5 h-5 text-zinc-500 group-hover:text-[#0a66c2] transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -323,7 +387,7 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
             </a>
 
             <!-- Contact -->
-            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" id="card-contact" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-zinc-400/40 hover:bg-zinc-100/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_-15px_rgba(255,255,255,0.06)] flex flex-col items-center text-center animate-fade-in-up delay-700">
+            <a href="mailto:admin@raphaeleliard.dev" aria-label="M'envoyer un email" id="card-contact" data-tilt-max="3" class="group p-6 rounded-3xl bg-zinc-900/40 border border-dashed border-zinc-800 hover:border-solid hover:border-zinc-400/40 hover:bg-zinc-100/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 backdrop-blur-sm card-3d hover:shadow-[0_15px_35px_-15px_rgba(255,255,255,0.06)] flex flex-col items-center text-center animate-fade-in-up delay-700">
                 <span class="p-2.5 bg-zinc-900/60 rounded-xl border border-zinc-800 group-hover:border-zinc-500/20 group-hover:bg-zinc-850 transition-all duration-300 group-hover:scale-110 mb-3" aria-hidden="true">
                     <svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -344,5 +408,66 @@ Description : Page d'accueil du portfolio et répertoire d'applications.
     
     <!-- Actualisation dynamique de l'année courante -->
     <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+
+    <!--
+      Effet "3D lift" : la carte s'incline légèrement vers le curseur.
+      Le JS ne fait que publier des variables CSS (--tilt-*), la mise en
+      forme reste entièrement décrite dans la feuille de style.
+      Désactivé au pointeur grossier (tactile) et si l'utilisateur a
+      demandé une réduction des animations.
+    -->
+    <script>
+    (function () {
+        var precisePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!precisePointer || reducedMotion) return;
+
+        Array.prototype.forEach.call(document.querySelectorAll('.card-3d'), function (card) {
+            var maxTilt = parseFloat(card.dataset.tiltMax) || 5; // degrés
+            var frame = null;
+            var pointerX = 0;
+            var pointerY = 0;
+
+            function render() {
+                frame = null;
+                var rect = card.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+
+                var ratioX = (pointerX - rect.left) / rect.width;  // 0 (gauche) → 1 (droite)
+                var ratioY = (pointerY - rect.top) / rect.height;  // 0 (haut)   → 1 (bas)
+
+                card.style.setProperty('--tilt-y', ((ratioX - 0.5) * 2 * maxTilt).toFixed(2) + 'deg');
+                card.style.setProperty('--tilt-x', ((0.5 - ratioY) * 2 * maxTilt).toFixed(2) + 'deg');
+                card.style.setProperty('--tilt-mx', (ratioX * 100).toFixed(1) + '%');
+                card.style.setProperty('--tilt-my', (ratioY * 100).toFixed(1) + '%');
+            }
+
+            card.addEventListener('pointermove', function (event) {
+                if (event.pointerType && event.pointerType !== 'mouse') return;
+                pointerX = event.clientX;
+                pointerY = event.clientY;
+                card.classList.add('is-tilting');
+                if (frame === null) frame = requestAnimationFrame(render);
+            });
+
+            function reset() {
+                if (frame !== null) {
+                    cancelAnimationFrame(frame);
+                    frame = null;
+                }
+                // Retour à plat avec la transition longue (classe retirée en premier)
+                card.classList.remove('is-tilting');
+                card.style.removeProperty('--tilt-x');
+                card.style.removeProperty('--tilt-y');
+                card.style.removeProperty('--tilt-mx');
+                card.style.removeProperty('--tilt-my');
+            }
+
+            card.addEventListener('pointerleave', reset);
+            card.addEventListener('pointercancel', reset);
+            card.addEventListener('blur', reset);
+        });
+    })();
+    </script>
 </body>
 </html>
